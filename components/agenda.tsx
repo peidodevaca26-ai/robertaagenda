@@ -24,6 +24,7 @@ import {
   Appointment,
   EventInput,
   agendaText,
+  categories,
   dailyEvents,
   dateKey,
   demoEvents,
@@ -225,7 +226,7 @@ export default function Agenda({ demo }: { demo: boolean }) {
   function card(event: Appointment, day?: string) {
     return (
       <article
-        className={`event-card ${event.category === "Pessoal" ? "personal" : ""} ${event.status === "cancelled" ? "cancelled" : ""}`}
+        className={`event-card ${event.category !== "Atendimento" ? "personal" : ""} ${event.status === "cancelled" ? "cancelled" : ""}`}
         key={event.id + (day ?? "")}
       >
         <div className="event-time">
@@ -242,7 +243,7 @@ export default function Agenda({ demo }: { demo: boolean }) {
           <div className="event-heading">
             <h3>{event.title}</h3>
             <span
-              className={`badge ${event.category === "Pessoal" ? "lavender" : ""}`}
+              className={`badge ${event.category !== "Atendimento" ? "lavender" : ""}`}
             >
               {event.category}
             </span>
@@ -445,10 +446,10 @@ export default function Agenda({ demo }: { demo: boolean }) {
                       <CalendarCheck2 size={22} />
                     </span>
                     <div>
-                      <p>Momentos pessoais</p>
+                      <p>Vida pessoal</p>
                       <strong>
                         {todayEvents
-                          .filter((e) => e.category === "Pessoal")
+                          .filter((e) => e.category !== "Atendimento")
                           .length.toString()
                           .padStart(2, "0")}
                       </strong>
@@ -571,8 +572,9 @@ export default function Agenda({ demo }: { demo: boolean }) {
                       onChange={(e) => setFilter(e.target.value)}
                     >
                       <option>Todas</option>
-                      <option>Atendimento</option>
-                      <option>Pessoal</option>
+                      {categories.map((category) => (
+                        <option key={category}>{category}</option>
+                      ))}
                     </select>
                   </div>
                   <div className="event-list">
@@ -603,7 +605,7 @@ export default function Agenda({ demo }: { demo: boolean }) {
                     <span>
                       <span className="legend-dot" />
                       Atendimento <span className="legend-dot personal-dot" />
-                      Pessoal
+                      Demais categorias
                     </span>
                     <button className="text-button" onClick={() => open()}>
                       <Plus size={15} />
@@ -735,8 +737,9 @@ export default function Agenda({ demo }: { demo: boolean }) {
                       })
                     }
                   >
-                    <option>Atendimento</option>
-                    <option>Pessoal</option>
+                    {categories.map((category) => (
+                      <option key={category}>{category}</option>
+                    ))}
                   </select>
                 </label>
                 <label>

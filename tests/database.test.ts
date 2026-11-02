@@ -17,6 +17,15 @@ test("PostgreSQL: migração, isolamento RLS, conflito e CRUD por RPC", async ()
         "utf8",
       ),
     );
+  await db.exec(
+    readFileSync(
+      new URL(
+        "../supabase/migrations/202611030001_expand_categories.sql",
+        import.meta.url,
+      ),
+      "utf8",
+    ),
+  );
     await db.exec(
       readFileSync(
         new URL("../supabase/tests/security.sql", import.meta.url),

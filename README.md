@@ -24,12 +24,13 @@ npm start
 ## Funcionalidades
 
 - Dashboard de hoje e próximos 30 dias, calendário mensal, lista de séries e filtro por categoria.
-- Criar, editar, cancelar, reativar e excluir compromissos; Atendimento e Pessoal.
+- Criar, editar, cancelar, reativar e excluir compromissos; categorias Atendimento, Pessoal, Academia, Igreja, Saúde, Família, Trabalho, Estudos, Lazer e Outros.
 - Título, data, horário, duração, repetição, local/link e observação.
 - Repetição semanal, quinzenal e mensal, sem data final. Em mês curto usa o último dia, retornando ao dia original nos meses seguintes.
 - Edição, cancelamento e exclusão afetam **toda a série**, inclusive o início; não há exceções individuais.
 - Conflitos consideram intervalos de duração e repetições futuras. Horários adjacentes são permitidos. Compromissos devem terminar até meia-noite do mesmo dia.
 - Resumo cronológico da data selecionada, copiar e abrir WhatsApp. O envio é manual; observações não entram no resumo. Revise títulos e locais antes de compartilhar.
+- O compartilhamento manual pelo link `wa.me` é gratuito e não exige conexão com a API do WhatsApp. Alertas automáticos não fazem parte do projeto: exigem WhatsApp Business Platform, número empresarial, modelos aprovados e podem gerar cobrança da Meta ou do provedor.
 - Horários são locais, sem conversão de fuso. Use o navegador no fuso de sua mãe (por exemplo America/Sao_Paulo).
 
 ## Acesso privado sem tela de login no painel

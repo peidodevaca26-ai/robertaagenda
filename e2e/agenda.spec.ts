@@ -7,12 +7,14 @@ test("criar, conflito, editar, cancelar, reativar e excluir uma série", async (
   await page.getByRole("button", { name: "Novo compromisso" }).click();
   const dialog = page.getByRole("dialog");
   await dialog.getByLabel("Título", { exact: true }).fill("Caminhada de teste");
+    await dialog.getByLabel("Categoria").selectOption("Academia");
   await dialog.getByLabel("Horário", { exact: true }).fill("18:00");
   await dialog.getByLabel("Repetição").selectOption("weekly");
   await dialog.getByRole("button", { name: "Salvar compromisso" }).click();
   await expect(
     page.getByRole("heading", { name: "Caminhada de teste" }),
   ).toBeVisible();
+  await expect(page.locator(".badge", { hasText: "Academia" })).toBeVisible();
   await page.getByRole("button", { name: "Novo compromisso" }).click();
   await dialog.getByLabel("Título", { exact: true }).fill("Conflito de teste");
   await dialog.getByLabel("Horário", { exact: true }).fill("18:15");

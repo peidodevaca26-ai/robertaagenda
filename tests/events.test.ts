@@ -31,6 +31,12 @@ test("valida formulário e impede horário/duração inválidos", () => {
   ])
     assert.equal(eventSchema.safeParse(value).success, false);
 });
+test("aceita as novas categorias de rotina", () => {
+  for (const category of ["Academia", "Igreja", "Saúde", "Família", "Trabalho", "Estudos", "Lazer", "Outros"] as const) {
+    assert.equal(eventSchema.safeParse({ ...event, category }).success, true);
+  }
+  assert.equal(eventSchema.safeParse({ ...event, category: "Categoria inválida" }).success, false);
+});
 test("recorrência semanal respeita início e dias exatos", () => {
   const e = { ...event, recurrence: "weekly" } as Appointment;
   assert.equal(occursOn(e, "2026-02-07"), true);

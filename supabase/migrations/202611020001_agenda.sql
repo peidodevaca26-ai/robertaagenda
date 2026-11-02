@@ -3,7 +3,7 @@ create table public.appointments (
  id uuid primary key default gen_random_uuid(),
  user_id uuid not null default auth.uid() references auth.users(id) on delete cascade,
  title text not null check (length(trim(title)) between 1 and 160),
- category text not null check (category in ('Atendimento','Pessoal')),
+ category text not null check (category in ('Atendimento','Pessoal','Academia','Igreja','Saúde','Família','Trabalho','Estudos','Lazer','Outros')),
  date date not null check (date between '1900-01-01' and '2100-12-31'),
  time text not null check (time ~ '^([01][0-9]|2[0-3]):[0-5][0-9]$'),
  duration integer not null check (duration between 5 and 1440),

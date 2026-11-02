@@ -1,8 +1,22 @@
 import { z } from "zod";
+
+export const categories = [
+  "Atendimento",
+  "Pessoal",
+  "Academia",
+  "Igreja",
+  "Saúde",
+  "Família",
+  "Trabalho",
+  "Estudos",
+  "Lazer",
+  "Outros",
+] as const;
+
 export const eventSchema = z
   .object({
     title: z.string().trim().min(1, "Informe o título.").max(160),
-    category: z.enum(["Atendimento", "Pessoal"]),
+    category: z.enum(categories),
     date: z.iso
       .date()
       .refine(
